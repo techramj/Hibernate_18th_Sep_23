@@ -1,0 +1,35 @@
+# step 1: download maven
+    https://dlcdn.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip
+    unzip in c drive
+
+
+
+# step 2: set the path in the enviroment variable
+    go to edit system environment variable .
+
+    create new system variable => M2_HOME
+    and value will be the path of Maven repo/folder (parent of bin)
+
+
+   M2_HOME = C:\apache-maven-3.8.4
+   JAVA_HOME = path of parent of bin folder of java
+
+
+   path
+   C:\apache-maven-3.8.4\bin
+
+   c:\program-file
+
+   echo "# Hibernate_18th_Sep_23" >> README.md
+
+
+
+
+
+   
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/techramj/Hibernate_18th_Sep_23.git
+git push -u origin main
