@@ -1,37 +1,35 @@
-package com.seed.entities;
+package com.seed.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="emp11")
+@Table(name = "emp_01")
 public class Employee {
-	
+
 	@Id
-	private int id;
+	private Integer id;
 	
 	private String name;
 	
-	private double salary;
-
+	private Double salary;
+	
 	public Employee() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(int id, String name, double salary) {
+	public Employee(Integer id, String name, Double salary) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -43,11 +41,11 @@ public class Employee {
 		this.name = name;
 	}
 
-	public double getSalary() {
+	public Double getSalary() {
 		return salary;
 	}
 
-	public void setSalary(double salary) {
+	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 

@@ -4,7 +4,7 @@
 
 
 
-# step 2: set the path in the enviroment variable
+# step 2: set the path in the enviroment variable 
 	go to edit system environment variable .
 
 	create new system variable => M2_HOME
@@ -65,8 +65,12 @@
 				</plugins>
 			</build>
 
-
 		</project>
+
+# step 3.5
+   right click to the pom.xml
+   select maven
+   then click on update project
 
 # step 4: hibernate.cfg.xml
 	<!DOCTYPE hibernate-configuration PUBLIC
@@ -95,8 +99,23 @@
 
 
 
+ORM:
 
+	Java							SQL
+	object							table: emp
+	Employee e = new Employee()		id	first_name	salary
+	 id
+	 name
+	 salary
 
+	 .save(e);  => insert into emp (id,name,salary) values (?,?,?)
+	               
+				
+	 	
+	
+
+client                      db
+     service ->  dao -->
 
 
 
