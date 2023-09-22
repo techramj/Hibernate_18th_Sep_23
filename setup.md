@@ -119,6 +119,18 @@ client                      db
 
 
 
+# Properties of session factory
+ ## property name="hbm2ddl.auto"
+ ### validate: 
+ 	validate that the schema matches, make no changes to the schema of the database, you probably want this for production.
+
+ ### update: 
+ 	update the schema to reflect the entities being persisted
+
+ ### create: 
+	creates the schema necessary for your entities, destroying any previous data.
+ ### create-drop: 
+	create the schema as in create above, but also drop the schema at the end of the session. This is great in early development or for testing.
 
 
 
@@ -149,3 +161,10 @@ client                      db
 	git branch -M main
 	git remote add origin https://github.com/techramj/Hibernate_18th_Sep_23.git
 	git push -u origin main
+
+
+Hibernate
+
+   JPA
+     TOPLINK
+	 HIbernate

@@ -1,30 +1,31 @@
 package com.seed.entitty;
 
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "emp_01")
 public class Employee {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name="first_name")
 	private String name;
 	
 	private Double salary;
 	
+	@Embedded
+	private Address address;
+	
 	public Employee() {
 	}
 
-	public Employee(Integer id, String name, Double salary) {
-		super();
-		this.id = id;
+	public Employee(String name, Double salary) {
 		this.name = name;
 		this.salary = salary;
 	}
@@ -51,6 +52,14 @@ public class Employee {
 
 	public void setSalary(Double salary) {
 		this.salary = salary;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public Address getAddress() {
+		return address;
 	}
 
 }

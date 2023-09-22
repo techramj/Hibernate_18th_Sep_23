@@ -6,7 +6,24 @@ import com.seed.service.EmployeeService;
 public class Application {
 
 	public static void main(String[] args) {
-		fetchDemo();
+		//fetchDemo();
+		//insertDemo();
+		//deleteExample();
+		updateExample();
+	}
+	
+	public static void updateExample() {
+		Employee emp = new Employee(111,"Sam",20000.0);
+		EmployeeService empService = new EmployeeService();
+		Employee updatedEmp = empService.updateEmployee(emp);
+		System.out.println(updatedEmp.getName()+"  "+updatedEmp.getSalary());
+	}
+	
+	public static void deleteExample() {
+		int id= 112;
+		EmployeeService empService = new EmployeeService();
+		Employee emp = empService.deleteEmployee(id);
+		System.out.println(emp.getName()+"  "+emp.getSalary());
 	}
 	
 	public static void fetchDemo() {
