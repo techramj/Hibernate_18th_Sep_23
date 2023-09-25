@@ -54,22 +54,7 @@ public class EmployeeDao {
 		}
 		return emp;
 	}
-    
-	public List<Employee> getEmployees(){
-		List<Employee> employees = new ArrayList<>();
-		Transaction tx = null;
-		Employee emp = null;
-		try (Session session = factory.openSession();) {
-			tx = session.beginTransaction();
-			Query query = session.createQuery("select e from Employee e");
-			employees = query.getResultList();
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		}
-		return employees;
-    }
-	
+
 	public Employee getEmployee(int id) {
 		Transaction tx = null;
 		Employee emp = null;
@@ -81,6 +66,21 @@ public class EmployeeDao {
 			tx.rollback();
 		}
 		return emp;
+	}
+	
+	public List<Employee> getEmployees(){
+		List<Employee> employees = new ArrayList<>();
+		Transaction tx = null;
+		Employee emp = null;
+		try (Session session = factory.openSession();) {
+			tx = session.beginTransaction();
+			Query query = session.createQuery("from Employee");
+			employees = query.getResultList();
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		}
+		return employees;
 	}
 
 }

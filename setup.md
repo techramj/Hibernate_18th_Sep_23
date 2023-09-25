@@ -68,11 +68,12 @@
 		</project>
 
 # step 3.5
-   right click to the pom.xml
-   select maven
-   then click on update project
+	right click to the pom.xml
+	select maven
+	then click on update project
 
-# step 4: hibernate.cfg.xml
+# step 4: 
+ ## xml: hibernate.cfg.xml
 	<!DOCTYPE hibernate-configuration PUBLIC
 			"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 			"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
@@ -91,12 +92,43 @@
 		</session-factory>
 	</hibernate-configuration>
 
+  ## annotation: hibernate.properties	
+	hibernate.connection.url=jdbc:oracle:thin:@localhost:1521/ORCLPDB
+	hibernate.connection.username=hr
+	hibernate.connection.password=hr
+	hibernate.connection.dialect=org.hibernate.dialect.OracleDialect
+	hibernate.show_sql=true
+	hibernate.hbm2ddl.auto=update
+	hibernate.format_sql=true
+
 
 # step 5: create the entity class
+	@Entity
+	@Table(name = "emp_01")
+	public class Employee {
+
+		@Id
+		private Integer id;
+		
+		@Column(name="first_name")
+		private String name;
+		
+		private Double salary;
+		
+	}
 
 
-# step 6: run the application
 
+# step 6: create the session factory object
+ ## xml
+	   Configuration cfg = new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		sessionFactory = cfg.buildSessionFactory();
+
+ ## Annotation
+       Configuration cfg = new Configuration();
+		cfg.addAnnotatedClass(Employee.class);
+		sessionFactory = cfg.buildSessionFactory();
 
 
 ORM:
