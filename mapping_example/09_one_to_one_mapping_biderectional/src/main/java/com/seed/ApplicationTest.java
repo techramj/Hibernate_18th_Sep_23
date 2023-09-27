@@ -32,9 +32,11 @@ public class ApplicationTest {
 		
 		Address add1= new Address("Pune", "411011");
 		Employee emp1  = new Employee("Jack", 5000.0, add1);
+		add1.setEmployee(emp1);
 		
 		Address add2= new Address("Mumbai", "211011");
 		Employee emp2  = new Employee("Jessica", 15000.0, add2);
+		add2.setEmployee(emp2);
 		
 		
 		empService.addEmployee(emp1);

@@ -1,11 +1,19 @@
 package com.seed.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -18,19 +26,20 @@ public class Employee {
 	private Integer id;
 	private String name;
 	private Double salary;
-	
-	@OneToOne(cascade = CascadeType.PERSIST)
-	private Address address;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "emp_project", joinColumns = { @JoinColumn(name = "eid") }, inverseJoinColumns = {
+			@JoinColumn(name = "project_id") })
+	private List<Project> projects = new ArrayList<Project>();
 
 	public Employee() {
-		
+
 	}
 
-	public Employee(String name, Double salary, Address address) {
+	public Employee(String name, Double salary) {
 		super();
 		this.name = name;
 		this.salary = salary;
-		this.address = address;
 	}
 
 	public String getName() {
@@ -49,20 +58,20 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public void addProjects(Project... projects) {
+		this.projects.addAll(Arrays.asList(projects));
 	}
 
 }

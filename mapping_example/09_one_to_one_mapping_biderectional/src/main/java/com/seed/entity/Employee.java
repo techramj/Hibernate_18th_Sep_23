@@ -19,7 +19,7 @@ public class Employee {
 	private String name;
 	private Double salary;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
 	public Employee() {

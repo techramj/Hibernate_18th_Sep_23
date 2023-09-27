@@ -1,8 +1,7 @@
 package com.seed;
 
-import com.seed.entity.Address;
+import com.seed.entity.Project;
 import com.seed.entity.Employee;
-import com.seed.service.AddressService;
 import com.seed.service.EmployeeService;
 import com.seed.service.EmployeeServiceImpl;
 
@@ -28,18 +27,24 @@ public class ApplicationTest {
 	
 	
 	public static void addExample() {
-		EmployeeServiceImpl empService = new EmployeeServiceImpl(); //loose coupling
+		EmployeeService empService = new EmployeeServiceImpl(); 
 		
-		Address add1= new Address("Pune", "411011");
-		Employee emp1  = new Employee("Jack", 5000.0, add1);
 		
-		Address add2= new Address("Mumbai", "211011");
-		Employee emp2  = new Employee("Jessica", 15000.0, add2);
+		Employee emp1  = new Employee("Jack", 5000.0);
+		Employee emp2  = new Employee("Jessica", 15000.0);
+		Employee emp3  = new Employee("Sam", 10000.0);
 		
+		Project p1  = new Project("EMS");
+		Project p2  = new Project("TMS");
+		Project p3  = new Project("BMS");
+		
+		emp1.addProjects(p1,p2);
+		emp2.addProjects(p2,p3);
+		emp3.addProjects(p1,p2,p3);
 		
 		empService.addEmployee(emp1);
 		empService.addEmployee(emp2);
-		
+		empService.addEmployee(emp3);
 	}
 	
 }

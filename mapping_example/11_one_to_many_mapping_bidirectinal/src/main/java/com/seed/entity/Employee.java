@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -18,19 +20,20 @@ public class Employee {
 	private Integer id;
 	private String name;
 	private Double salary;
-	
-	@OneToOne(cascade = CascadeType.PERSIST)
-	private Address address;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="dept_id")
+	private Department department;
 
 	public Employee() {
-		
+
 	}
 
-	public Employee(String name, Double salary, Address address) {
+	public Employee(String name, Double salary, Department department) {
 		super();
 		this.name = name;
 		this.salary = salary;
-		this.address = address;
+		this.department = department;
 	}
 
 	public String getName() {
@@ -49,20 +52,20 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 }
