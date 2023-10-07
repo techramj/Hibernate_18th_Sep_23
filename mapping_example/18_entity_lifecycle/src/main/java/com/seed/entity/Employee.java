@@ -6,11 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 //import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@NamedQueries({
+	@NamedQuery(name="findByFirstName", query="from Employee e where e.firstName=:name"),
+	@NamedQuery(name="findByLastName", query="from Employee e where e.lastName=:name"),
+})
 @Entity
 @Table(name="emp")
 public class Employee {

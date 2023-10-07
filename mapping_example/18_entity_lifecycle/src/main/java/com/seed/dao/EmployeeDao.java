@@ -11,4 +11,6 @@ public interface EmployeeDao {
 	 Employee delete(Integer employeeId);
 	 Employee findById(Integer employeeId);
 	 List<Employee> findAll();
+	 List<Employee> findEmployeeByFirstName(String firstName);
+	 List<Employee> findEmployeeByLastName(String lastName);
 }

@@ -67,6 +67,8 @@ public class CriteriaTest {
 				.uniqueResult();
 		System.out.println(count);
 	}
+	
+	
 
 	public static void main(String[] args) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();

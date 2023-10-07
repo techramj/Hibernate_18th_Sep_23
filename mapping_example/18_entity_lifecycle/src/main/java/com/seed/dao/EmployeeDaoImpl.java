@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
@@ -91,6 +92,31 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			e.printStackTrace();
 		}
 		return employees;
+	}
+
+	@Override
+	public List<Employee> findEmployeeByFirstName(String firstName) {
+		String hql = "from Employee e where e.firstName=:name";
+		try (Session session = sessionFactory.openSession();) {
+			Query query = session.createQuery(hql);
+			query.setParameter("name", firstName);
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Employee>();
+	}
+
+	@Override
+	public List<Employee> findEmployeeByLastName(String lastName) {
+		try (Session session = sessionFactory.openSession();) {
+			TypedQuery<Employee> query = session.getNamedQuery("findByLastName");
+			query.setParameter("name", lastName);
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Employee>();
 	}
 
 }

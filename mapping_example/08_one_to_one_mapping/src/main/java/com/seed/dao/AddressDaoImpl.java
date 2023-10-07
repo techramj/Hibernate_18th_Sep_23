@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.seed.entity.Address;
+import com.seed.entity.Employee;
 import com.seed.util.HibernateUtil;
 
 public class AddressDaoImpl implements AddressDao{
@@ -40,9 +41,19 @@ public class AddressDaoImpl implements AddressDao{
 	}
 
 	@Override
-	public Address findById(Long employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Address findById(Long addressId) {
+		Address address = null;
+		try (Session session = sessionFactory.openSession();) {
+
+			address = session.get(Address.class, addressId);
+			address.getId();
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return address;
 	}
 
 	@Override

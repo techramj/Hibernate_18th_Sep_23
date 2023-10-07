@@ -1,5 +1,6 @@
 package com.seed;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,9 +76,7 @@ public class HQLTest {
 		display(list);
 	}
 	
-	
-	
-	
+
 	//aggregate methods
 
 	public static void hqlAggregateExample1(Session session) {
@@ -85,6 +84,26 @@ public class HQLTest {
 		Query query = session.createQuery(hql);
 		List list = query.list();
 		System.out.println(list.get(0));
+	}
+	
+	//nth highest salary
+	public static void printNthHighestSalary(Session session, int n) {
+		String hql ="select salary from Employee e order by salary desc";
+		Query query = session.createQuery(hql);
+		query.setFirstResult(n-1);
+		query.setMaxResults(1);
+		List list = query.list();
+		System.out.println(list.get(0));
+	}
+	
+	// nth highest salary using native sql query
+	public static void printNthHighestSalary1(Session session, int n) {
+		String sql = "SELECT salary FROM(\n" + "SELECT salary, dense_rank() OVER(ORDER BY salary DESC) AS RANK\n"
+				+ "FROM emp\n" + ") WHERE RANK=:rank";
+		Query query = session.createSQLQuery(sql);
+		query.setParameter("rank", n);
+		BigDecimal nthHightestSal = (BigDecimal) query.uniqueResult();
+		System.out.println(nthHightestSal);
 	}
 
 	public static void main(String[] args) {
@@ -100,6 +119,8 @@ public class HQLTest {
 
 			//hqlExample7(session, 3000, "ST_CLERK");
 			//hqlExample7(session, 14000, "SA_MAN");
+			
+			printNthHighestSalary1(session,5);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -40,9 +40,18 @@ public class AddressDaoImpl implements AddressDao{
 	}
 
 	@Override
-	public Address findById(Long employeeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Address findById(Long addressId) {
+		Address address = null;
+		try (Session session = sessionFactory.openSession();) {
+
+			address = session.get(Address.class, addressId);
+			address.getEmployee().getName();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return address;
 	}
 
 	@Override

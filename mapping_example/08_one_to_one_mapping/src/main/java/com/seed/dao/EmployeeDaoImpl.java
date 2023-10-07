@@ -67,8 +67,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try (Session session = sessionFactory.openSession();) {
 			tx = session.beginTransaction();
 			emp = session.get(Employee.class, employeeId);
-			System.out.println(emp.getName());
-			//System.out.println(emp.getAddress());
+			System.out.println(emp.getAddress().getCity());
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -92,6 +91,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			e.printStackTrace();
 		}
 		return employees;
+	}
+
+	@Override
+	public List<Employee> findByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
